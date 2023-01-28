@@ -9,10 +9,8 @@ import AddNote from "./AddNote";
 const Notes = () => {
     const context=useContext(noteContext);
     // const{notes, setNotes}=context;
-    const {notes , getAllNotes}=context;
-    useEffect(()=>{
-      getAllNotes()
-    },[])
+    const {notes}=context;
+    
   return (
     <> 
      <div>
