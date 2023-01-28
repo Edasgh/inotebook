@@ -1,16 +1,17 @@
-import React,{ useEffect } from 'react';
+import React from 'react';
 
 
 import { Link ,useLocation} from 'react-router-dom';
 
 const Navbar = () => {
   let location=useLocation();
-  useEffect(()=>{
-    console.log(location.pathname);
-  },[location])
+  // useEffect(()=>{
+  //   console.log(location.pathname);
+  // },[location])
+  //WE DON'T NEED 'useEffect' HERE
   return (
     <>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 {/*THE className="navbar-light" & "bg-light" REPRESENTS THE LIGHT THEME OF THE NAVIGATION BAR && REMOVE THE className="bg-body-tertiary" TO ENABLE THIS FEATURE*/}
     
   <div className="container-fluid">
@@ -22,6 +23,9 @@ const Navbar = () => {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname ==='/'?"active":""}`} aria-current="page" to="/">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link className={`nav-link ${location.pathname ==='/'?"active":""}`} to="/">Notes</Link>
         </li>
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname ==='/about'?"active":""}`} to="/about">About</Link>
