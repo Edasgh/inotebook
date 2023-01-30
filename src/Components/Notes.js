@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
 
-  const {showAlert} = props;
+  const { showAlert } = props;
 
   const context = useContext(noteContext);
   let history=useNavigate();
