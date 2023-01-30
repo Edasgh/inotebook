@@ -33,6 +33,7 @@ const Notesitem = (props) => {
             style={{ color: "rgb(228 69 69)" }}
             onClick={() => {
               deleteNote(note._id);
+              props.showAlert(" : Deleted Successfully","success")
             }}
           ></i>
           <i

@@ -2,7 +2,7 @@ import React,{useContext, useState} from "react";
 import noteContext from '../Context/notes/noteContext';
 
 
-const AddNote = () => {
+const AddNote = (props) => {
     const context=useContext(noteContext);
     // const{notes, setNotes}=context;
     const{addNote}=context;
@@ -13,13 +13,17 @@ const AddNote = () => {
         e.preventDefault();//Page will not be reloaded if backend is not found after submitting
     addNote(note.title , note.description , note.tag);
     setNote({title:"",description:"",tag:""})
+    props.showAlert(" : Added Successfully","success")
     }
     const onChange=(e)=>{
     setNote({...note, [e.target.name]: e.target.value})//AS WE ARE CHANGING 'name' HERE,SO WE ARE SETTING 'name' TO THE 'value' HERE
     }
   return (
     <>
-      <h2>Add a note</h2>
+    <div className=" d-flex justify-content-center">
+        <h2 className="my-3">Add a note</h2>
+        </div>
+  
 
       <div className="container my-3">
       <form className="my-3">

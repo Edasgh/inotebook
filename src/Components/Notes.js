@@ -6,18 +6,27 @@ import AddNote from "./AddNote";
 //FOR THE MODAL(SPECIALLY)-FROM 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 
-const Notes = () => {
+const Notes = (props) => {
+
+  const {showAlert} = props;
+
   const context = useContext(noteContext);
+  let history=useNavigate();
   // const{notes, setNotes}=context;
   const { notes, getAllNotes , editNote} = context;
   useEffect(() => {
-    getAllNotes();
-    // eslint-disable-next-line
+    if(localStorage.getItem("token")){
+      getAllNotes();
+      // eslint-disable-next-line
+
+    }else{
+    history("/login")
+    }
   }, []);
   
   const [show, setShow] = useState(false);
@@ -38,7 +47,8 @@ const Notes = () => {
         e.preventDefault();//Page will not be reloaded if backend is not found after submitting
     //addNote(note.title , note.description , note.tag);
      editNote(note.id , note.etitle , note.edescription, note.etag)
-    setShow(false);
+     setShow(false);
+     props.showAlert(" : Updated Successfully","success")
     }
     const onChange=(e)=>{
     setNote({...note, [e.target.name]: e.target.value})//AS WE ARE CHANGING 'name' HERE,SO WE ARE SETTING 'name' TO THE 'value' HERE
@@ -47,7 +57,7 @@ const Notes = () => {
   return (
     <>
       <div>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
         <Button ref={ref} variant="primary" onClick={handleShow} style={{display:'none'}}>
         Launch demo modal
       </Button>
@@ -107,14 +117,17 @@ const Notes = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-        <h1 className="my-3"><Link className="nav-link" to="/notes">Your Notes</Link></h1>
+      <hr />
+        <div className=" d-flex justify-content-center">
+        <h2 className="my-5"><Link className="nav-link" to="/notes">Your Notes</Link></h2>
+        </div>
         <div className="row">
           <div>
-          {notes.length === 0 && <h2 className="text-primary d-flex justify-content-center">No Notes to show</h2>}
+          {notes.length === 0 && <h3 className="text-primary d-flex justify-content-center " style={{marginBottom:'4rem'}}>No Notes to show</h3>}
           </div>
           {notes.map((note) => {
             //THE 'notes' [const (notes)] SET AS 'context'
-            return <Notesitem key={note._id} note={note} updateNote={updateNote} />;
+            return <Notesitem key={note._id} note={note} showAlert={props.showAlert} updateNote={updateNote} />;
           })}
         </div>
        
