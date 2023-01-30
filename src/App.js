@@ -9,7 +9,9 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import NoteState from "./Context/notes/NoteState";
 import Alert from "./Components/Alert";
-
+import Notes from "./Components/Notes";
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 function App() {
   return(
   <>
@@ -19,8 +21,11 @@ function App() {
   <Alert message="Alert of iNotebook will look like this"/>
   <div className="container">
    <Routes>
+    <Route exact path="/notes" element={<Notes/>}></Route>
     <Route exact path="/" element={<Home/>}></Route>
     <Route exact path="/about" element={ <About/>}></Route>
+    <Route exact path="/signup" element={<Signup/>}></Route>
+    <Route exact path="/login" element={<Login/>}></Route>
    </Routes>
   </div>
   </Router>

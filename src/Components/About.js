@@ -1,5 +1,5 @@
-import React,{ useContext, useEffect } from 'react';
-import EditModal from'./EditModal';
+import React from 'react';
+
 
 const About = () => {
   //ONLY FOR UNDERSTANDING THE USES OF 'noteContext' AND 'NoteState'
@@ -17,7 +17,6 @@ const About = () => {
     </div>
     {/*REAL CODE STARTS HERE*/}
      <h1>About iNotebook</h1>
-     <EditModal/>
      
     
     
