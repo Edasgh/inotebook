@@ -63,11 +63,11 @@ const NoteState = (props) => {
     console.log("New note");
     let note = {
       
-        "user": "63d38578d4068284bd848f8c",
+        "user": process.env.USER_ID,
         "title": title,
         "description": description,
         "tag": tag,
-        "_id": "63d600b90dd011a32497cccb",
+        "_id": process.env.ID,
         "date": "2023-01-29T05:08:24.768Z",
         "__v": 0
       
